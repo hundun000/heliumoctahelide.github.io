@@ -667,8 +667,15 @@ function Playground() { // 立绘和文本
         }, animationDelayTime);
         animationDelayTime += fadetime;
     };
+    
     this.drawDialog = function (paras) { // 绘制对话
         setTimeout(function () {
+
+            var font_size_1 = 40; // reset 24
+            var font_size_2 = 50; // reset 30
+            var dialog_text_left = 330; // reset 380
+            var name_text_left = dialog_text_left - 50; // reset -50
+
             var name = paras.name;
             var text = paras.text;
             tctx.clearRect(0, 0, tc.width, tc.height);
@@ -681,18 +688,18 @@ function Playground() { // 立绘和文本
             tctx.fillStyle = grad;
             tctx.fillRect(0, 500, 1280, 720);
             if (name) {
-                tctx.font = "30px 黑体";
+                tctx.font = font_size_2 + "px 黑体";
                 tctx.fillStyle = '#888888';
-                tctx.wrapText(name, 330 - name.length * 30, 618, 1000, 30);
-                tctx.font = "24px 黑体";
+                tctx.wrapText(name, name_text_left - name.length * font_size_2, 618, 1000, font_size_2);
+                tctx.font = font_size_1 + "px 黑体";
                 tctx.fillStyle = "#FFFFFF";
-                tctx.wrapRollingText(text, 380, 620, 768, 30);
+                tctx.wrapRollingText(text, dialog_text_left, 620, 768, font_size_2);
                 document.getElementById("textbox").textContent += '[' + name + '] ' + text + '\n\n';
                 document.getElementById("textbox").scrollTop = document.getElementById("textbox").scrollHeight;
             } else {
-                tctx.font = "24px 黑体";
+                tctx.font = font_size_1 + "px 黑体";
                 tctx.fillStyle = "#FFFFFF";
-                tctx.wrapRollingText(text, 380, 620, 768, 30);
+                tctx.wrapRollingText(text, dialog_text_left, 620, 768, font_size_2);
                 document.getElementById("textbox").textContent += text + '\n\n';
                 document.getElementById("textbox").scrollTop = document.getElementById("textbox").scrollHeight;
             }
